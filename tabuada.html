@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tabuada</h1>
+        <label for="numero">Número da Tabuada:</label>
+        <input type="number" id="numero" placeholder="Digite um número"><br><br>
+
+        <label for="ateNumero">Tabuada até o número:</label>
+        <input type="number" id="ateNumero" placeholder="Digite até que número"><br><br>
+
+        <label for="mostrarTodas">Mostrar todas as tabuadas:</label>
+        <input type="checkbox" id="mostrarTodas"><br><br>
+
+        <button onclick="gerarTabuada()">Gerar Tabuada</button><br><br>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function gerarTabuada() {
+            var numero = parseInt(document.getElementById("numero").value);
+            var ateNumero = parseInt(document.getElementById("ateNumero").value);
+            var mostrarTodas = document.getElementById("mostrarTodas").checked;
+            var resultado = '';
+
+            if (isNaN(numero) || isNaN(ateNumero)) {
+                alert("Por favor, insira números válidos.");
+                return;
+            }
+
+            for (var i = 1; i <= numero; i++) {
+                resultado += `<h3>Tabuada do ${i}:</h3>`;
+                for (var j = 1; j <= ateNumero; j++) {
+                    resultado += `${i} x ${j} = ${i * j}<br>`;
+                }
+                resultado += '<br>';
+            }
+
+            if (mostrarTodas) {
+                resultado = '<h3>Tabuadas de 1 até ' + numero + ':</h3>' + resultado;
+            }
+
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+    </script>
+</body>
+
+</html>
